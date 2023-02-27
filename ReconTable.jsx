@@ -21,6 +21,15 @@ const useStyles = makeStyles({
 
 const data = [
   [
+    '',
+    'CIP',
+    'PMI-LDAP',
+    'PARTY',
+    'LICENSE',
+    'USER',
+    'TEST',
+  ],
+  [
     'SSN',
     '21124144',
     '23234234',
