@@ -105,15 +105,10 @@ const defaultFormValue = {
   workPhone: '',
 };
 
-const ViewTypes = {
-    form: 'form',
-    table: 'table'
-};
-
 export default function SearchOptions() {
   const [formValue, setFormValue] = useState({ ...defaultFormValue });
   const [value, setValue] = React.useState(PanelTypes.PARTY_ID);
-  const [view, setView] = useState(ViewTypes.form);
+  const [showTable, setShowTable] = useState(false);
 
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -122,116 +117,115 @@ export default function SearchOptions() {
 
   const reset = () => {
     setFormValue({ ...defaultFormValue });
+    setShowTable(false);
   };
 
   const submit = () => {
     console.log(formValue);
-    setView(ViewTypes.table);
+    setShowTable(true);
   };
 
   return (
     <div style={{ padding: '10px 10px' }}>
-      {view === ViewTypes.form && (
-        <>
-          <div>
-            <FieldsContainer>
-                <FieldContainer>
-                    <Label>Category:</Label>
-                    <Select value={value} onChange={handleChange} displayEmpty>
-                        <MenuItem value="" disabled>
-                        Placeholder
-                        </MenuItem>
-                        <MenuItem value={PanelTypes.PARTY_ID}>
-                        {PanelTypes.PARTY_ID}
-                        </MenuItem>
-                        <MenuItem
-                        value={PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH}
-                        >
-                        {PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH}
-                        </MenuItem>
-                        <MenuItem value={PanelTypes.CONSUMER_ID}>
-                        {PanelTypes.CONSUMER_ID}
-                        </MenuItem>
-                        <MenuItem
-                        value={
-                            PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID
-                        }
-                        >
-                        {PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID}
-                        </MenuItem>
-                        <MenuItem value={PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER}>
-                        {PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER}
-                        </MenuItem>
-                        <MenuItem
-                        value={
-                            PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH
-                        }
-                        >
-                        {PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH}
-                        </MenuItem>
-                    </Select>
-                </FieldContainer>
-            </FieldsContainer>
-            {value === PanelTypes.PARTY_ID && (
-              <SearchForm
-                type={PanelTypes.PARTY_ID}
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            )}
-            {value === PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH && (
-              <SearchForm
-                type={PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH}
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            )}
-            {value === PanelTypes.CONSUMER_ID && (
-              <SearchForm
-                type={PanelTypes.CONSUMER_ID}
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            )}
-            {value ===
-              PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID && (
-              <SearchForm
-                type={
+      <div>
+        <FieldsContainer>
+          <FieldContainer>
+            <Label>Category:</Label>
+            <Select value={value} onChange={handleChange} displayEmpty>
+              <MenuItem value="" disabled>
+                Placeholder
+              </MenuItem>
+              <MenuItem value={PanelTypes.PARTY_ID}>
+                {PanelTypes.PARTY_ID}
+              </MenuItem>
+              <MenuItem
+                value={PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH}
+              >
+                {PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH}
+              </MenuItem>
+              <MenuItem value={PanelTypes.CONSUMER_ID}>
+                {PanelTypes.CONSUMER_ID}
+              </MenuItem>
+              <MenuItem
+                value={
                   PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID
                 }
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            )}
-            {value === PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER && (
-              <SearchForm
-                type={PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER}
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            )}
-            {value ===
-              PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH && (
-              <SearchForm
-                type={
+              >
+                {PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID}
+              </MenuItem>
+              <MenuItem value={PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER}>
+                {PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER}
+              </MenuItem>
+              <MenuItem
+                value={
                   PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH
                 }
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            )}
-          </div>
-          <ActionsContainer>
-            <Button variant="contained" onClick={(e) => reset()}>
-              Reset
-            </Button>
-            <SubmitBtn variant="contained" onClick={(e) => submit()}>
-              Submit
-            </SubmitBtn>
-          </ActionsContainer>
-        </>
+              >
+                {PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH}
+              </MenuItem>
+            </Select>
+          </FieldContainer>
+        </FieldsContainer>
+        {value === PanelTypes.PARTY_ID && (
+          <SearchForm
+            type={PanelTypes.PARTY_ID}
+            formValue={formValue}
+            setFormValue={setFormValue}
+          />
+        )}
+        {value === PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH && (
+          <SearchForm
+            type={PanelTypes.SOCIAL_SECURITY_NUMBER_AND_DATE_OF_BIRTH}
+            formValue={formValue}
+            setFormValue={setFormValue}
+          />
+        )}
+        {value === PanelTypes.CONSUMER_ID && (
+          <SearchForm
+            type={PanelTypes.CONSUMER_ID}
+            formValue={formValue}
+            setFormValue={setFormValue}
+          />
+        )}
+        {value ===
+          PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID && (
+          <SearchForm
+            type={PanelTypes.FIRST_NAME_LAST_NAME_DATE_OF_BIRTH_AND_CONTRACT_ID}
+            formValue={formValue}
+            setFormValue={setFormValue}
+          />
+        )}
+        {value === PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER && (
+          <SearchForm
+            type={PanelTypes.CONTRACT_ID_AND_PERSON_NUMBER}
+            formValue={formValue}
+            setFormValue={setFormValue}
+          />
+        )}
+        {value ===
+          PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH && (
+          <SearchForm
+            type={
+              PanelTypes.FIRST_NAME_LAST_NAME_GROUP_NUMBER_AND_DATE_OF_BIRTH
+            }
+            formValue={formValue}
+            setFormValue={setFormValue}
+          />
+        )}
+      </div>
+      <ActionsContainer>
+        <Button variant="contained" onClick={(e) => reset()}>
+          Reset
+        </Button>
+        <SubmitBtn variant="contained" onClick={(e) => submit()}>
+          Submit
+        </SubmitBtn>
+      </ActionsContainer>
+      {showTable && (
+        <div style={{'marginTop': '100px'}}>
+            <ReconTable />
+        </div>
       )}
-      {view === ViewTypes.table && <ReconTable />}
     </div>
   );
 }
