@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: document.body.clientWidth
+    minWidth: 720
   },
   sticky: {
     position: "sticky",
@@ -160,7 +160,7 @@ export default function BasicTable() {
     <>
       <TableContainer
         style={{
-          maxWidth: document.body.clientWidth - 100,
+          maxWidth: 600,
           border: "1px solid black"
         }}
       >
